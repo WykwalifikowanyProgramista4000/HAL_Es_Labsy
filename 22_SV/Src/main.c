@@ -58,7 +58,8 @@ static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 
 /* USER CODE BEGIN PFP */
-uint8_t counter=0;
+uint8_t counter_Tx=0;
+uint8_t counter_Rx=0;
 uint8_t buforRx[1];
 uint8_t buforTx[1]={0x8};
 
@@ -70,8 +71,11 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi){
 	}*/
 	if (hspi->Instance==SPI1){
 		HAL_SPI_Transmit_IT(&hspi1, buforTx, 1);
-		HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
-	}
+		counter_Tx++;
+		}
+	HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+	counter_Rx++;
+
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_SET);
 }
 /* USER CODE END PFP */
