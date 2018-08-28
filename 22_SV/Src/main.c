@@ -69,14 +69,13 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi){
 	while (counter!=6){
 		buforTx[counter]=rand()%100;
 	}*/
-	if (hspi->Instance==SPI1){
-		HAL_SPI_Transmit_IT(&hspi1, buforTx, 1);
-		counter_Tx++;
+	if (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) == GPIO_PIN_RESET){
+		if(HAL_SPI_Transmit_IT(&hspi1, buforTx, 1)==HAL_OK)
+		 counter_Tx++;
 		}
-	HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
-	counter_Rx++;
 
-	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_SET);
+	if(HAL_SPI_Receive_IT(&hspi1, buforRx, 1)==HAL_OK)
+		counter_Rx++;
 }
 /* USER CODE END PFP */
 
@@ -116,8 +115,9 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   //srand(time(NULL));
-  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
+  if (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) == GPIO_PIN_RESET){
   HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+  }
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -226,14 +226,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOE_CLK_ENABLE();
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
-
   /*Configure GPIO pin : PE14 */
   GPIO_InitStruct.Pin = GPIO_PIN_14;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
 }
