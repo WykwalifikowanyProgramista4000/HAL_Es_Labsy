@@ -65,10 +65,7 @@ uint8_t buforTx[1]={0x8};
 
 /* Private function prototypes -----------------------------------------------*/
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi){
-	/*uint8_t counter=0;
-	while (counter!=6){
-		buforTx[counter]=rand()%100;
-	}*/
+
 	if (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) == GPIO_PIN_RESET){
 		if(HAL_SPI_Transmit_IT(&hspi1, buforTx, 1)==HAL_OK)
 		 counter_Tx++;

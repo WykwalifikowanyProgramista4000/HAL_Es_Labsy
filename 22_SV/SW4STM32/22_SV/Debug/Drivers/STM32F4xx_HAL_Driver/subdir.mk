@@ -4,21 +4,21 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
-D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c 
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c 
 
 OBJS += \
 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o \
@@ -56,123 +56,123 @@ C_DEPS += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma_ex.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma_ex.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ex.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ex.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ramfunc.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ramfunc.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr_ex.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr_ex.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_spi.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_spi.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o: D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"D:/ESTEEMY/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/22_SV/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

@@ -4,14 +4,14 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 S_SRCS += \
-D:/ESTEEMY/HAL_Es_Labsy/21_EX/SW4STM32/startup_stm32f413xx.s 
+C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/21_EX/SW4STM32/startup_stm32f413xx.s 
 
 OBJS += \
 ./Application/SW4STM32/startup_stm32f413xx.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Application/SW4STM32/startup_stm32f413xx.o: D:/ESTEEMY/HAL_Es_Labsy/21_EX/SW4STM32/startup_stm32f413xx.s
+Application/SW4STM32/startup_stm32f413xx.o: C:/Users/Agata/Desktop/Repos/HAL_Es_Labsy/21_EX/SW4STM32/startup_stm32f413xx.s
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Assembler'
 	@echo $(PWD)

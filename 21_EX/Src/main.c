@@ -65,12 +65,11 @@ static void MX_SPI1_Init(void);
 /* USER CODE BEGIN 0 */
 uint8_t buforTx[1]={0x10};
 uint8_t buforRx[1];
-uint8_t counter=0;
+uint16_t counter=0;
 
-void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi){
-	buforTx[0]=0x10;
-	if (HAL_SPI_TransmitReceive_IT(&hspi1, buforTx, buforRx, 1)==HAL_OK)
-		counter++;
+void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi){
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
+	HAL_SPI_TransmitReceive_IT(&hspi1, buforTx, buforRx, 1);
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_SET);
 }
 /* USER CODE END 0 */
@@ -107,7 +106,7 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
-  HAL_SPI_Transmit_IT(&hspi1, buforTx, 1);
+  HAL_SPI_TransmitReceive_IT(&hspi1, buforTx, buforRx, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
