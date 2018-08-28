@@ -70,12 +70,17 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi){
 		buforTx[counter]=rand()%100;
 	}*/
 	if (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) == GPIO_PIN_RESET){
-		if(HAL_SPI_Transmit_IT(&hspi1, buforTx, 1)==HAL_OK)
-		 counter_Tx++;
+		if(HAL_SPI_Transmit_IT(&hspi1, buforTx, 1) == HAL_OK)
+			counter_Tx++;
 		}
+}
 
-	if(HAL_SPI_Receive_IT(&hspi1, buforRx, 1)==HAL_OK)
-		counter_Rx++;
+void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi){
+	counter_Rx++;
+	if (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) == GPIO_PIN_RESET){
+		if(HAL_SPI_Receive_IT(&hspi1, buforRx, 1) == HAL_OK)
+				counter_Rx++;
+	}
 }
 /* USER CODE END PFP */
 
@@ -115,16 +120,20 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   //srand(time(NULL));
+  /*
   if (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) == GPIO_PIN_RESET){
   HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
   }
+  */
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	  if (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) == GPIO_PIN_RESET){
+	    HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+	    }
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
