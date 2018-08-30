@@ -49,10 +49,9 @@ SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-uint32_t counter_Tx[1]={0};
-uint32_t counter_Rx[1]={0};
 uint8_t buforRx[1];
 uint8_t buforTx[1]={5};
+uint8_t flag=0;
 //uint32_t error;
 /* USER CODE END PV */
 
@@ -62,21 +61,10 @@ static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 
 /* USER CODE BEGIN PFP */
-/*
-uint32_t counter_Tx=0;
-uint32_t counter_Rx=0;
-uint8_t buforRx[1];
-uint8_t buforTx[1]={0x8};
-*/
+
 /* Private function prototypes -----------------------------------------------*/
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi){
-	HAL_SPI_Transmit_IT(&hspi1, buforTx, 1);
-			counter_Tx[0]++;
-	while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14)!=GPIO_PIN_RESET){
-	}
-	HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
-	//error=hspi->ErrorCode;
-	counter_Rx[0]++;
+	flag=1;
 }
 /* USER CODE END PFP */
 
@@ -120,7 +108,6 @@ int main(void)
   while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14)!=GPIO_PIN_RESET){
   }
   HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
-  counter_Rx[0]++;
 
   /* USER CODE END 2 */
 
@@ -128,7 +115,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	  if (flag==1){
+		  flag=0;
+		  HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+		  HAL_SPI_Transmit_IT(&hspi1, buforTx, 1);
+		  while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14)!=GPIO_PIN_RESET) {}
+		  HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+	  }
   /* USER CODE END WHILE */
   /* USER CODE BEGIN 3 */
 
