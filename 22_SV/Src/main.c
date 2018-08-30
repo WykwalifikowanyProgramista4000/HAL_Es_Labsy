@@ -49,7 +49,11 @@ SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
+uint32_t counter_Tx[1]={0};
+uint32_t counter_Rx[1]={0};
+uint8_t buforRx[1];
+uint8_t buforTx[1]={5};
+//uint32_t error;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -58,26 +62,21 @@ static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 
 /* USER CODE BEGIN PFP */
-uint8_t counter_Tx=0;
-uint8_t counter_Rx=0;
+/*
+uint32_t counter_Tx=0;
+uint32_t counter_Rx=0;
 uint8_t buforRx[1];
 uint8_t buforTx[1]={0x8};
-
+*/
 /* Private function prototypes -----------------------------------------------*/
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi){
-
-	if (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) == GPIO_PIN_RESET){
-		if(HAL_SPI_Transmit_IT(&hspi1, buforTx, 1) == HAL_OK)
-			counter_Tx++;
-		}
-}
-
-void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi){
-	counter_Rx++;
-	if (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) == GPIO_PIN_RESET){
-		if(HAL_SPI_Receive_IT(&hspi1, buforRx, 1) == HAL_OK)
-				counter_Rx++;
+	HAL_SPI_Transmit_IT(&hspi1, buforTx, 1);
+			counter_Tx[0]++;
+	while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14)!=GPIO_PIN_RESET){
 	}
+	HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+	//error=hspi->ErrorCode;
+	counter_Rx[0]++;
 }
 /* USER CODE END PFP */
 
@@ -117,22 +116,20 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   //srand(time(NULL));
-  /*
-  if (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) == GPIO_PIN_RESET){
-  HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+
+  while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14)!=GPIO_PIN_RESET){
   }
-  */
+  HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+  counter_Rx[0]++;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) == GPIO_PIN_RESET){
-	    HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
-	    }
-  /* USER CODE END WHILE */
 
+  /* USER CODE END WHILE */
   /* USER CODE BEGIN 3 */
 
   }
