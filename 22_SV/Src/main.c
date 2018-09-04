@@ -52,9 +52,9 @@ SPI_HandleTypeDef hspi1;
 uint8_t buforRx[1];
 uint8_t buforAdr[1];
 uint8_t buforCnt[1];
-uint8_t buforRx[1];
+
 uint8_t buforTx_1[1] = { 1 };
-uint8_t data_bracket[6][1] = {{1}, {2}, {3}, {4}, {5}, {6}};
+uint8_t data_bracket[6][1] = {{0}, {1}, {2}, {3}, {4}, {5}};
 uint8_t trash[1] = { 0xFF };
 uint8_t flag = 1;
 //uint8_t counter=1;
@@ -109,6 +109,7 @@ int main(void) {
 	/* USER CODE BEGIN 2 */
 	uint8_t counter=0;
 	uint8_t var=0;
+	uint8_t var2=0;
 	//srand(time(NULL));
 
 	/* USER CODE END 2 */
@@ -118,40 +119,35 @@ int main(void) {
 	while (1) {
 		if (flag == 1) {
 			flag = 0;
-			//data_bracket[0][0] = rand()%4;
 
-
-			if (var>0 && var<3) {
-					//HAL_SPI_Transmit_IT(&hspi1, data_bracket[ buforAdr[0] ], 1);
+			if (var==1) {
 					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
 					var++;
+					var2=1;
 			}
-			else if (buforAdr[0] == 0xFF) {
+			else {
 				if (counter < buforCnt[0]){
-					HAL_SPI_Transmit_IT(&hspi1, data_bracket[ counter + buforCnt[0] - 1 ], 1);
+					HAL_SPI_Transmit_IT(&hspi1, data_bracket[counter+buforAdr[0]], 1);
 					counter++;
 				}
 				else if (counter == buforCnt[0]){
 					counter=0;
 				}
-				//if (counter > buforCnt[0])
-				//	counter=0;
 			}
 
 			while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) != GPIO_PIN_RESET) {}
 				if (var==0){
-					HAL_SPI_Receive_IT(&hspi1, buforAdr, 1);
 					var++;
+					HAL_SPI_Receive_IT(&hspi1, buforAdr, 1);
 				}
 				else if (var==2){
+					var++;
 					HAL_SPI_Receive_IT(&hspi1, buforCnt, 1);
-
 				}
 				else if (var>=3){
-					if (counter==buforCnt[0]-1)
+					if (counter==buforCnt[0])
 						var=0;
-					HAL_SPI_Receive_IT(&hspi1, buforAdr, 1);
-
+					HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
 				}
 		}
 	}
