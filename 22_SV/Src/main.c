@@ -38,7 +38,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_hal.h"
-#include <stdbool.h>
 
 /* USER CODE BEGIN Includes */
 
@@ -109,7 +108,6 @@ int main(void) {
 	/* USER CODE BEGIN 2 */
 	uint8_t counter=0;
 	uint8_t var=0;
-	uint8_t var2=0;
 	//srand(time(NULL));
 
 	/* USER CODE END 2 */
@@ -123,15 +121,19 @@ int main(void) {
 			if (var==1) {
 					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
 					var++;
-					var2=1;
 			}
 			else {
-				if (counter < buforCnt[0]){
+				if (counter+buforAdr[0]>=6 && counter!=buforCnt[0]){
+					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
+					counter++;
+				}
+				else if (counter < buforCnt[0]){
 					HAL_SPI_Transmit_IT(&hspi1, data_bracket[counter+buforAdr[0]], 1);
 					counter++;
 				}
 				else if (counter == buforCnt[0]){
 					counter=0;
+					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
 				}
 			}
 
