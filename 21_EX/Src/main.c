@@ -41,7 +41,6 @@
 #include "stm32f4xx_hal.h"
 
 /* USER CODE BEGIN Includes */
-
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -63,15 +62,16 @@ static void MX_SPI1_Init(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-uint8_t buforTx[1]={0x10};
+uint8_t buforAdr[1]={2};
+uint8_t buforCnt[1]={255};
+uint8_t buforTrs[1]={0xFF};
 uint8_t buforRx[1];
-uint16_t counter=0;
+uint8_t flag=1;
 
 void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi){
-	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
-	HAL_SPI_TransmitReceive_IT(&hspi1, buforTx, buforRx, 1);
-	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_SET);
+	flag=1;
 }
+
 /* USER CODE END 0 */
 
 /**
@@ -105,23 +105,43 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
-  HAL_SPI_TransmitReceive_IT(&hspi1, buforTx, buforRx, 1);
+
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  uint32_t delay=100;
   while (1)
   {
+		  flag=0;
+		  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_SET);
+		  HAL_Delay(delay);
+		  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
+		  HAL_SPI_TransmitReceive_IT(&hspi1, buforAdr, buforRx, 1);
+		  while (flag!=1) {}
+		  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_SET);
+		  HAL_Delay(delay);
+		  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
+		  HAL_SPI_TransmitReceive_IT(&hspi1, buforCnt, buforRx, 1);
+		  while (flag!=1) {}
+		  for (int i=0; i<buforCnt[0]; i++){
+			  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_SET);
+			  HAL_Delay(delay);
+			  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
+			  HAL_SPI_TransmitReceive_IT(&hspi1, buforTrs, buforRx, 1);
+			  while (flag!=1) {}
+		  }
+  }
+
 
   /* USER CODE END WHILE */
-
+}
   /* USER CODE BEGIN 3 */
-
-  }
   /* USER CODE END 3 */
 
-}
+
 
 /**
   * @brief System Clock Configuration
