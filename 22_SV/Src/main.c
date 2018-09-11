@@ -40,44 +40,56 @@
 #include "main.h"
 #include "stm32f4xx_hal.h"
 
-/* USER CODE BEGIN Includes */
 
+/* USER CODE BEGIN Includes */
+#include "time.h"
+#include "stdlib.h"
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
 
+TIM_HandleTypeDef htim10;
+
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-uint32_t counter_Tx[1]={0};
-uint32_t counter_Rx[1]={0};
 uint8_t buforRx[1];
-uint8_t buforTx[1]={5};
-//uint32_t error;
+uint8_t buforAdr[1];
+uint8_t buforCnt[1];
+
+//uint8_t i=0;
+
+//uint8_t buforTx_1[1] = { 1 };
+uint8_t data_bracket[6][1] ={{0},{0},{0},{0},{0},{0}};
+uint8_t trash[1] = { 0xFF };
+
+
+uint8_t flag = 1;
+//uint8_t counter=1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
+static void MX_TIM10_Init(void);
 
 /* USER CODE BEGIN PFP */
-/*
-uint32_t counter_Tx=0;
-uint32_t counter_Rx=0;
-uint8_t buforRx[1];
-uint8_t buforTx[1]={0x8};
-*/
+
 /* Private function prototypes -----------------------------------------------*/
-void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi){
-	HAL_SPI_Transmit_IT(&hspi1, buforTx, 1);
-			counter_Tx[0]++;
-	while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14)!=GPIO_PIN_RESET){
-	}
-	HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
-	//error=hspi->ErrorCode;
-	counter_Rx[0]++;
+void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi) {
+	flag = 1;
 }
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	if(htim->Instance == TIM10){
+		for(uint8_t i=0; i<6; i++){
+			data_bracket[i][0] = rand()%10;
+		}
+	}
+}
+
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
@@ -114,28 +126,65 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
+  MX_TIM10_Init();
   /* USER CODE BEGIN 2 */
-  //srand(time(NULL));
+  HAL_TIM_Base_Start_IT(&htim10);
+  srand(time(NULL));
+	uint8_t counter=0;
+	uint8_t var=0;
 
-  while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14)!=GPIO_PIN_RESET){
-  }
-  HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
-  counter_Rx[0]++;
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+	while (1) {
+		if (flag == 1) {
+			flag = 0;
 
+			if (var==1) {
+					HAL_SPI_Transmit_IT(&hspi1, trash, 1);	//przy pierwszym przejœciu pomijamy var0 flag0
+					var++;
+			}
+			else {
+				if (counter+buforAdr[0]>=6 && counter!=buforCnt[0]){	//pêtla która uruchamia siê przy wyjœciu poza tablicê i wysy³a 0xFF
+					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
+					counter++;
+				}
+				else if (counter < buforCnt[0]){
+					HAL_SPI_Transmit_IT(&hspi1, data_bracket[counter+buforAdr[0]], 1);	//gdy counter znajduje siê wewn¹trz tablicy to wysy³a dane z pod adresu counter
+					counter++;
+				}
+				else if (counter == buforCnt[0]){	//gdy counter znajduje siê zaraz za ostatni¹ rz¹dan¹ dan¹ to siê zeruje i wysy³a 0xFF
+					counter=0;
+					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
+				}
+			}
+
+			while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) != GPIO_PIN_RESET) {}
+				if (var==0){
+					var++;
+					HAL_SPI_Receive_IT(&hspi1, buforAdr, 1);
+				}
+				else if (var==2){
+					var++;
+					HAL_SPI_Receive_IT(&hspi1, buforCnt, 1);
+				}
+				else if (var>=3){
+					if (counter==buforCnt[0])
+						var=0;
+					HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+				}
+		}
+	}
   /* USER CODE END WHILE */
+
   /* USER CODE BEGIN 3 */
 
-  }
+}
   /* USER CODE END 3 */
 
-}
+
 
 /**
   * @brief System Clock Configuration
@@ -213,6 +262,22 @@ static void MX_SPI1_Init(void)
 
 }
 
+/* TIM10 init function */
+static void MX_TIM10_Init(void)
+{
+
+  htim10.Instance = TIM10;
+  htim10.Init.Prescaler = 1599;
+  htim10.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim10.Init.Period = 999;
+  htim10.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  if (HAL_TIM_Base_Init(&htim10) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+}
+
 /** Configure pins as 
         * Analog 
         * Input 
@@ -250,10 +315,9 @@ static void MX_GPIO_Init(void)
 void _Error_Handler(char *file, int line)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  while(1)
-  {
-  }
+	/* User can add his own implementation to report the HAL error return state */
+	while (1) {
+	}
   /* USER CODE END Error_Handler_Debug */
 }
 
@@ -268,8 +332,8 @@ void _Error_Handler(char *file, int line)
 void assert_failed(uint8_t* file, uint32_t line)
 { 
   /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
-     tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+	/* User can add his own implementation to report the file name and line number,
+	 tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
