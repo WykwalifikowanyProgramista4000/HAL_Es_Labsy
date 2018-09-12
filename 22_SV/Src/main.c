@@ -147,22 +147,16 @@ int main(void)
 			switch (calld) {
 				case 0:
 					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
-					__disable_irq();
 					var++;
-					__enable_irq();
 					break;
 				case 1:
 					if (counter+buforAdr[0]>6 && counter<buforCnt[0]){
-						__disable_irq();
 						counter++;
-						__enable_irq();
 						HAL_SPI_Transmit_IT(&hspi1, trash, 1);
 					}
 					if (counter < buforCnt[0] ){
 						HAL_SPI_Transmit_IT(&hspi1, data_bracket[counter+buforAdr[0]], 1);
-						__disable_irq();
 						counter++;
-						__enable_irq();
 					}
 					__disable_irq();
 					if (counter>=buforCnt[0]){
@@ -178,13 +172,12 @@ int main(void)
 			while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) != GPIO_PIN_RESET) {}
 			switch (var){
 				case 1:
-					HAL_SPI_Receive_IT(&hspi1, buforAdr, 1);
+					HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+					memcpy(buforAdr, buforRx, 1);
 					break;
 				case 2:
-					__disable_irq();
 					var++;
 					calld=1;
-					__enable_irq();
 					HAL_SPI_Receive_IT(&hspi1, buforCnt, 1);
 					break;
 				case 3:
