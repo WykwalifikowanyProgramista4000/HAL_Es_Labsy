@@ -87,6 +87,8 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi) {
 	flag = 1;
 }
 
+
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if(htim->Instance == TIM10){
 		for(uint8_t i=0; i<6; i++){
@@ -155,8 +157,9 @@ int main(void)
 						HAL_SPI_Transmit_IT(&hspi1, trash, 1);
 					}
 					if (counter < buforCnt[0] ){
-						HAL_SPI_Transmit_IT(&hspi1, data_bracket[counter+buforAdr[0]], 1);
 						counter++;
+						HAL_SPI_Transmit_IT(&hspi1, data_bracket[counter-1+buforAdr[0]], 1);
+
 					}
 					__disable_irq();
 					if (counter>=buforCnt[0]){
@@ -164,6 +167,7 @@ int main(void)
 						reset();
 						__enable_irq();
 						HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+						while (flag!=1) {}
 					}
 					__enable_irq();
 					break;
@@ -173,15 +177,23 @@ int main(void)
 			switch (var){
 				case 1:
 					HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+					while (flag!=1) {}
+					__disable_irq();
 					memcpy(buforAdr, buforRx, 1);
+					__enable_irq();
 					break;
 				case 2:
 					var++;
 					calld=1;
-					HAL_SPI_Receive_IT(&hspi1, buforCnt, 1);
+					HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+					while (flag!=1) {}
+					__disable_irq();
+					memcpy(buforCnt, buforRx, 1);
+					__enable_irq();
 					break;
 				case 3:
 					HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+					while (flag!=1) {}
 					break;
 			}
 		}
