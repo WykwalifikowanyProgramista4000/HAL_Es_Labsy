@@ -58,14 +58,13 @@ uint8_t buforRx[1];
 uint8_t buforAdr[1];
 uint8_t buforCnt[1];
 
-//uint8_t i=0;
-
-//uint8_t buforTx_1[1] = { 1 };
 uint8_t data_bracket[6][1] ={{0},{0},{0},{0},{0},{0}};
 uint8_t trash[1] = { 0xFF };
 
-
+uint8_t var=0;
 uint8_t flag = 1;
+uint8_t calld=0;
+uint8_t counter=0;
 //uint8_t counter=1;
 /* USER CODE END PV */
 
@@ -78,6 +77,12 @@ static void MX_TIM10_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* Private function prototypes -----------------------------------------------*/
+void reset(){
+	counter=0;
+	calld=0;
+	var=0;
+}
+
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi) {
 	flag = 1;
 }
@@ -130,8 +135,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim10);
   srand(time(NULL));
-	uint8_t counter=0;
-	uint8_t var=0;
 
 
   /* USER CODE END 2 */
@@ -141,40 +144,51 @@ int main(void)
 	while (1) {
 		if (flag == 1) {
 			flag = 0;
-
-			if (var==1) {
-					HAL_SPI_Transmit_IT(&hspi1, trash, 1);	//przy pierwszym przejœciu pomijamy var0 flag0
+			switch (calld) {
+				case 0:
+					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
+					__disable_irq();
 					var++;
-			}
-			else {
-				if (counter+buforAdr[0]>=6 && counter!=buforCnt[0]){	//pêtla która uruchamia siê przy wyjœciu poza tablicê i wysy³a 0xFF
-					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
-					counter++;
-				}
-				else if (counter < buforCnt[0]){
-					HAL_SPI_Transmit_IT(&hspi1, data_bracket[counter+buforAdr[0]], 1);	//gdy counter znajduje siê wewn¹trz tablicy to wysy³a dane z pod adresu counter
-					counter++;
-				}
-				else if (counter == buforCnt[0]){	//gdy counter znajduje siê zaraz za ostatni¹ rz¹dan¹ dan¹ to siê zeruje i wysy³a 0xFF
-					counter=0;
-					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
-				}
+					__enable_irq();
+					break;
+				case 1:
+					if (counter+buforAdr[0]>6 && counter<buforCnt[0]){
+						__disable_irq();
+						counter++;
+						__enable_irq();
+						HAL_SPI_Transmit_IT(&hspi1, trash, 1);
+					}
+					if (counter < buforCnt[0] ){
+						HAL_SPI_Transmit_IT(&hspi1, data_bracket[counter+buforAdr[0]], 1);
+						__disable_irq();
+						counter++;
+						__enable_irq();
+					}
+					if (counter>=buforCnt[0]){
+						__disable_irq();
+						reset();
+						__enable_irq();
+						HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+					}
+					break;
 			}
 
 			while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) != GPIO_PIN_RESET) {}
-				if (var==0){
-					var++;
+			switch (var){
+				case 1:
 					HAL_SPI_Receive_IT(&hspi1, buforAdr, 1);
-				}
-				else if (var==2){
+					break;
+				case 2:
+					__disable_irq();
 					var++;
+					calld=1;
+					__enable_irq();
 					HAL_SPI_Receive_IT(&hspi1, buforCnt, 1);
-				}
-				else if (var>=3){
-					if (counter==buforCnt[0])
-						var=0;
+					break;
+				case 3:
 					HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
-				}
+					break;
+			}
 		}
 	}
   /* USER CODE END WHILE */
