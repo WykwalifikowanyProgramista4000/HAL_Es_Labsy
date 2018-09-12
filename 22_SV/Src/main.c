@@ -164,12 +164,14 @@ int main(void)
 						counter++;
 						__enable_irq();
 					}
+					__disable_irq();
 					if (counter>=buforCnt[0]){
-						__disable_irq();
+
 						reset();
 						__enable_irq();
 						HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
 					}
+					__enable_irq();
 					break;
 			}
 
