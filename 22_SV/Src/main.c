@@ -40,7 +40,6 @@
 #include "main.h"
 #include "stm32f4xx_hal.h"
 
-
 /* USER CODE BEGIN Includes */
 #include "time.h"
 #include "stdlib.h"
@@ -51,6 +50,8 @@
 SPI_HandleTypeDef hspi1;
 
 TIM_HandleTypeDef htim10;
+
+UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -65,6 +66,7 @@ uint8_t var=0;
 uint8_t flag = 1;
 uint8_t calld=0;
 uint8_t counter=0;
+uint8_t data[1];
 //uint8_t counter=1;
 /* USER CODE END PV */
 
@@ -73,6 +75,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_TIM10_Init(void);
+static void MX_USART1_UART_Init(void);
 
 /* USER CODE BEGIN PFP */
 
@@ -81,13 +84,14 @@ void reset(){
 	counter=0;
 	calld=0;
 	var=0;
+	__enable_irq();
+	data[0] = 69;
+	HAL_UART_Transmit(&huart1, data, 1, 20);
 }
 
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi) {
 	flag = 1;
 }
-
-
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if(htim->Instance == TIM10){
@@ -134,10 +138,10 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI1_Init();
   MX_TIM10_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim10);
   srand(time(NULL));
-
 
   /* USER CODE END 2 */
 
@@ -148,28 +152,35 @@ int main(void)
 			flag = 0;
 			switch (calld) {
 				case 0:
-					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
+					HAL_SPI_Transmit(&hspi1, trash, 1, 20);
+					HAL_UART_Transmit(&huart1, trash, 1, 20);
 					var++;
 					break;
 				case 1:
 					if (counter+buforAdr[0]>6 && counter<buforCnt[0]){
 						counter++;
-						HAL_SPI_Transmit_IT(&hspi1, trash, 1);
+						HAL_SPI_Transmit(&hspi1, trash, 1, 20);
+						HAL_UART_Transmit(&huart1, trash, 1, 20);
+						data[0] = 44;
+						HAL_UART_Transmit(&huart1, data, 1, 20);
 					}
 					if (counter < buforCnt[0] ){
 						counter++;
-						HAL_SPI_Transmit_IT(&hspi1, data_bracket[counter-1+buforAdr[0]], 1);
-
+						HAL_SPI_Transmit(&hspi1, data_bracket[counter-1+buforAdr[0]], 1, 20);
+						HAL_UART_Transmit(&huart1, data_bracket[counter-1+buforAdr[0]], 1, 20);
 					}
 					__disable_irq();
-					if (counter>=buforCnt[0]){
-
+					if (counter==buforCnt[0]){
 						reset();
-						__enable_irq();
 						HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
 						while (flag!=1) {}
 					}
 					__enable_irq();
+					if (counter>buforCnt[0]){
+						data[0] = 137;
+						HAL_UART_Transmit(&huart1, data, 1, 20);
+					}
+
 					break;
 			}
 
@@ -180,6 +191,10 @@ int main(void)
 					while (flag!=1) {}
 					__disable_irq();
 					memcpy(buforAdr, buforRx, 1);
+					if(buforAdr[0] != 0){
+						data[0] = 22;
+						HAL_UART_Transmit(&huart1, data, 1, 20);
+					}
 					__enable_irq();
 					break;
 				case 2:
@@ -189,6 +204,14 @@ int main(void)
 					while (flag!=1) {}
 					__disable_irq();
 					memcpy(buforCnt, buforRx, 1);
+					if(buforCnt[0] != 6){
+						data[0] = 33;
+						HAL_UART_Transmit(&huart1, data, 1, 20);
+					}
+					if(buforCnt[0] == 0){
+						data[0] = 77;
+						HAL_UART_Transmit(&huart1, data, 1, 20);
+					}
 					__enable_irq();
 					break;
 				case 3:
@@ -293,6 +316,25 @@ static void MX_TIM10_Init(void)
   htim10.Init.Period = 999;
   htim10.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   if (HAL_TIM_Base_Init(&htim10) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+}
+
+/* USART1 init function */
+static void MX_USART1_UART_Init(void)
+{
+
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
