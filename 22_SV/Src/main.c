@@ -61,13 +61,15 @@ uint8_t buforCnt[1];
 
 uint8_t data_bracket[6][1] ={{0},{0},{0},{0},{0},{0}};
 uint8_t trash[1] = { 0xFF };
+uint8_t size;
 
 uint8_t var=0;
 uint8_t flag = 1;
 uint8_t calld=0;
 uint8_t counter=0;
 uint8_t data[1];
-uint8_t timestamp[1]={0};
+long timestamp;
+uint8_t timTx[20];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -167,9 +169,9 @@ int main(void)
 					if (counter < buforCnt[0] ){
 						counter++;
 						HAL_SPI_Transmit(&hspi1, data_bracket[counter-1+buforAdr[0]], 1, 20);
-						//HAL_UART_Transmit(&huart1, data_bracket[counter-1+buforAdr[0]], 1, 20);
-						timestamp[0]=TIM10->CNT;
-						HAL_UART_Transmit(&huart1, timestamp, 1, 20);
+						HAL_UART_Transmit(&huart1, data_bracket[counter-1+buforAdr[0]], 1, 20);
+						//HAL_UART_Transmit(&huart1, timestamp, 1, 20);
+
 					}
 					__disable_irq();
 					if (counter==buforCnt[0]){
