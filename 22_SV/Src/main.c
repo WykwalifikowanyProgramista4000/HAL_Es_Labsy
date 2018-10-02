@@ -40,7 +40,6 @@
 #include "main.h"
 #include "stm32f4xx_hal.h"
 
-
 /* USER CODE BEGIN Includes */
 #include "time.h"
 #include "stdlib.h"
@@ -52,21 +51,22 @@ SPI_HandleTypeDef hspi1;
 
 TIM_HandleTypeDef htim10;
 
+UART_HandleTypeDef huart1;
+
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 uint8_t buforRx[1];
 uint8_t buforAdr[1];
 uint8_t buforCnt[1];
 
-//uint8_t i=0;
-
-//uint8_t buforTx_1[1] = { 1 };
 uint8_t data_bracket[6][1] ={{0},{0},{0},{0},{0},{0}};
 uint8_t trash[1] = { 0xFF };
 
-
+uint8_t var=0;
 uint8_t flag = 1;
-//uint8_t counter=1;
+uint8_t calld=0;
+uint8_t counter=0;
+uint8_t data[1];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -74,10 +74,20 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_TIM10_Init(void);
+static void MX_USART1_UART_Init(void);
 
 /* USER CODE BEGIN PFP */
 
 /* Private function prototypes -----------------------------------------------*/
+void reset(){
+	counter=0;
+	calld=0;
+	var=0;
+	__enable_irq();
+	data[0] = 69;
+	HAL_UART_Transmit(&huart1, data, 1, 20);
+}
+
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi) {
 	flag = 1;
 }
@@ -127,12 +137,10 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI1_Init();
   MX_TIM10_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim10);
   srand(time(NULL));
-	uint8_t counter=0;
-	uint8_t var=0;
-
 
   /* USER CODE END 2 */
 
@@ -141,40 +149,89 @@ int main(void)
 	while (1) {
 		if (flag == 1) {
 			flag = 0;
-
-			if (var==1) {
-					HAL_SPI_Transmit_IT(&hspi1, trash, 1);	//przy pierwszym przejœciu pomijamy var0 flag0
+			switch (calld) {
+				case 0:
+					HAL_SPI_Transmit(&hspi1, trash, 1, 20);
+					HAL_UART_Transmit(&huart1, trash, 1, 20);
 					var++;
-			}
-			else {
-				if (counter+buforAdr[0]>=6 && counter!=buforCnt[0]){	//pêtla która uruchamia siê przy wyjœciu poza tablicê i wysy³a 0xFF
-					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
-					counter++;
-				}
-				else if (counter < buforCnt[0]){
-					HAL_SPI_Transmit_IT(&hspi1, data_bracket[counter+buforAdr[0]], 1);	//gdy counter znajduje siê wewn¹trz tablicy to wysy³a dane z pod adresu counter
-					counter++;
-				}
-				else if (counter == buforCnt[0]){	//gdy counter znajduje siê zaraz za ostatni¹ rz¹dan¹ dan¹ to siê zeruje i wysy³a 0xFF
-					counter=0;
-					HAL_SPI_Transmit_IT(&hspi1, trash, 1);
-				}
+					break;
+				case 1:
+					if (counter+buforAdr[0]>6 && counter<buforCnt[0]){
+						counter++;
+						HAL_SPI_Transmit(&hspi1, trash, 1, 20);
+						HAL_UART_Transmit(&huart1, trash, 1, 20);
+						data[0] = 44;
+						HAL_UART_Transmit(&huart1, data, 1, 20);
+					}
+					if (counter < buforCnt[0] ){
+						counter++;
+						HAL_SPI_Transmit(&hspi1, data_bracket[counter-1+buforAdr[0]], 1, 20);
+						HAL_UART_Transmit(&huart1, data_bracket[counter-1+buforAdr[0]], 1, 20);
+					}
+					__disable_irq();
+					if (counter==buforCnt[0]){
+						reset();
+						HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+						while (flag!=1) {}
+					}
+					__enable_irq();
+					if (counter>buforCnt[0]){
+						data[0] = 137;
+						HAL_UART_Transmit(&huart1, data, 1, 20);
+					}
+
+					break;
 			}
 
 			while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) != GPIO_PIN_RESET) {}
-				if (var==0){
-					var++;
-					HAL_SPI_Receive_IT(&hspi1, buforAdr, 1);
-				}
-				else if (var==2){
-					var++;
-					HAL_SPI_Receive_IT(&hspi1, buforCnt, 1);
-				}
-				else if (var>=3){
-					if (counter==buforCnt[0])
-						var=0;
+			switch (var){
+				case 1:
 					HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
-				}
+					while (flag!=1) {}
+					if (buforRx[0]<=5){
+						__disable_irq();
+						memcpy(buforAdr, buforRx, 1);
+						__enable_irq();
+					}
+					else{
+						while (buforRx[0]>5){
+							HAL_SPI_Transmit(&hspi1, trash, 1, 20);
+							while (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14) != GPIO_PIN_RESET) {}
+							HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+							while (flag!=1) {}
+						}
+						__disable_irq();
+						memcpy(buforAdr, buforRx, 1);
+						__enable_irq();
+					}
+					break;
+				case 2:
+					HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+					while (flag!=1) {}
+					if(buforRx[0] <=20 && buforRx[0] >= 1){
+						__disable_irq();
+						memcpy(buforCnt, buforRx, 1);
+						__enable_irq();
+						var++;
+						calld=1;
+					}
+					else{
+						reset();
+						if (buforCnt[0] < 1){
+							data[0] = 77;
+							HAL_UART_Transmit(&huart1, data, 1, 20);
+						}
+						else if (buforCnt[0] > 20){
+							data[0]=33;
+							HAL_UART_Transmit(&huart1, data, 1, 20);
+						}
+					}
+					break;
+				case 3:
+					HAL_SPI_Receive_IT(&hspi1, buforRx, 1);
+					while (flag!=1) {}
+					break;
+			}
 		}
 	}
   /* USER CODE END WHILE */
@@ -272,6 +329,25 @@ static void MX_TIM10_Init(void)
   htim10.Init.Period = 999;
   htim10.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   if (HAL_TIM_Base_Init(&htim10) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+}
+
+/* USART1 init function */
+static void MX_USART1_UART_Init(void)
+{
+
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }

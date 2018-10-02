@@ -41,10 +41,13 @@
 #include "stm32f4xx_hal.h"
 
 /* USER CODE BEGIN Includes */
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
+
+UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -55,6 +58,7 @@ SPI_HandleTypeDef hspi1;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
+static void MX_USART1_UART_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -62,14 +66,24 @@ static void MX_SPI1_Init(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-uint8_t buforAdr[1]={2};
-uint8_t buforCnt[1]={255};
+uint8_t buforAdr[1]={0};
+uint8_t buforCnt[1]={6};
 uint8_t buforTrs[1]={0xFF};
 uint8_t buforRx[1];
 uint8_t flag=1;
 
+uint8_t db_size[1]={6};
+
 void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi){
 	flag=1;
+}
+
+void packed(){
+	uint8_t buforLoc[1];
+	__disable_irq();
+	memcpy(buforLoc, buforRx, 1);
+	HAL_UART_Transmit(&huart1, buforLoc, 1, 20);
+	__enable_irq();
 }
 
 /* USER CODE END 0 */
@@ -104,6 +118,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
 
@@ -121,27 +136,33 @@ int main(void)
 		  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
 		  HAL_SPI_TransmitReceive_IT(&hspi1, buforAdr, buforRx, 1);
 		  while (flag!=1) {}
+		  HAL_UART_Transmit(&huart1, buforAdr, 1, 20);
+		  packed();
 		  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_SET);
 		  HAL_Delay(delay);
 		  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
 		  HAL_SPI_TransmitReceive_IT(&hspi1, buforCnt, buforRx, 1);
 		  while (flag!=1) {}
+		  HAL_UART_Transmit(&huart1, buforCnt, 1, 20);
+		  packed();
 		  for (int i=0; i<buforCnt[0]; i++){
 			  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_SET);
 			  HAL_Delay(delay);
 			  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
 			  HAL_SPI_TransmitReceive_IT(&hspi1, buforTrs, buforRx, 1);
 			  while (flag!=1) {}
+			  HAL_UART_Transmit(&huart1, buforTrs, 1, 20);
+			  packed();
 		  }
   }
 
 
   /* USER CODE END WHILE */
-}
+
   /* USER CODE BEGIN 3 */
   /* USER CODE END 3 */
 
-
+}
 
 /**
   * @brief System Clock Configuration
@@ -214,6 +235,25 @@ static void MX_SPI1_Init(void)
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
   hspi1.Init.CRCPolynomial = 10;
   if (HAL_SPI_Init(&hspi1) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+}
+
+/* USART1 init function */
+static void MX_USART1_UART_Init(void)
+{
+
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }

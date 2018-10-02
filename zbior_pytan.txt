@@ -1,1 +1,0 @@
-01.	Dlaczego podpiêcie przez UART1,2,3... nie dzia³a, tylko nale¿y podpinaæ siê przez USART? [kurs #7]

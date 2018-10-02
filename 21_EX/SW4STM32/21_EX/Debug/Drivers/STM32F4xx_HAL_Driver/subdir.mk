@@ -18,7 +18,8 @@ C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/STM32F4xx_HAL_Driver/Src/stm
 C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
 C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c \
 C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
-C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c 
+C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
+C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c 
 
 OBJS += \
 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o \
@@ -35,7 +36,8 @@ OBJS += \
 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o \
 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_spi.o \
 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o \
-./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o 
+./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o \
+./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o 
 
 C_DEPS += \
 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.d \
@@ -52,7 +54,8 @@ C_DEPS += \
 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.d \
 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_spi.d \
 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.d \
-./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.d 
+./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.d \
+./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -169,6 +172,14 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o: C:/Users/Agata/Desktop/STM32/P
 	@echo ' '
 
 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o: C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c
+	@echo 'Building file: $<'
+	@echo 'Invoking: MCU GCC Compiler'
+	@echo $(PWD)
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F413xx -I"C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Inc" -I"C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/CMSIS/Include" -I"C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o: C:/Users/Agata/Desktop/STM32/Projekty/21_EX/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
